@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: gpt_pdf_api
+    container_name: gpt_pdf_api
+    ipc: host
+    ports:
+      - 8080:8080
+    env_file:
+      - ./.env
+    volumes:
+      - ./api:/app
+      - ./data/vectorstore:/vectorstore
+    restart: always
